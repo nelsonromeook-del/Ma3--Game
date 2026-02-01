@@ -1,5 +1,5 @@
 // src/components/GengeRunner/RouteSelection/RouteSelection.jsx
-import './RouteSelection.css';
+import "./RouteSelection.css";
 
 export default function RouteSelection({ onSelectRoute }) {
   return (
@@ -15,9 +15,9 @@ export default function RouteSelection({ onSelectRoute }) {
 
       <div className="matatu-icon">
         <div className="matatu-body">
-          <div className="wheel wheel-left"></div>
-          <div className="wheel wheel-right"></div>
-          <div className="window-strip"></div>
+          <div className="wheel wheel-left" />
+          <div className="wheel wheel-right" />
+          <div className="window-strip" />
         </div>
       </div>
 
@@ -26,7 +26,7 @@ export default function RouteSelection({ onSelectRoute }) {
       <div className="routes-container">
         <button
           className="route-card thika"
-          onClick={() => onSelectRoute('Thika Road Express')}
+          onClick={() => onSelectRoute("Thika Road Express")}
         >
           <div className="route-content">
             <div className="route-info">
@@ -39,7 +39,7 @@ export default function RouteSelection({ onSelectRoute }) {
 
         <button
           className="route-card jogoo"
-          onClick={() => onSelectRoute('Jogoo Road Pulse')}
+          onClick={() => onSelectRoute("Jogoo Road Pulse")}
         >
           <div className="route-content">
             <div className="route-info">

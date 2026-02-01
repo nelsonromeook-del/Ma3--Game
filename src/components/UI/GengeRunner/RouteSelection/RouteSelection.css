@@ -1,10 +1,21 @@
 /* RouteSelection.css */
 
+:root {
+  --bg: #0a0a0a;
+  --bg-deep: #000;
+  --fg: #fff;
+  --accent-teal: #00ffcc;
+  --accent-cyan: #00ffcc;
+  --accent-orange: #ff6b00;
+  --card: #111;
+  --card-border: #333;
+}
+
 .screen-container {
   width: 100%;
   height: 100vh;
-  background: radial-gradient(circle at top, #0a0a0a, #000);
-  color: #fff;
+  background: radial-gradient(circle at top, var(--bg), var(--bg-deep));
+  color: var(--fg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +36,7 @@
   font-size: 28px;
   font-weight: 900;
   letter-spacing: 3px;
-  color: #00ffcc;
+  color: var(--accent-teal);
   text-shadow: 0 0 12px rgba(0, 255, 204, 0.8);
 }
 
@@ -33,7 +44,7 @@
   background: none;
   border: none;
   font-size: 22px;
-  color: #fff;
+  color: var(--fg);
   cursor: pointer;
 }
 
@@ -55,7 +66,7 @@
 .matatu-body {
   width: 120px;
   height: 50px;
-  background: linear-gradient(135deg, #00ffcc, #008f77);
+  background: linear-gradient(135deg, var(--accent-teal), #008f77);
   border-radius: 8px;
   position: relative;
   box-shadow: 0 6px 16px rgba(0, 255, 204, 0.4);
@@ -83,7 +94,6 @@
 .wheel-left {
   left: 14px;
 }
-
 .wheel-right {
   right: 14px;
 }
@@ -109,13 +119,16 @@
 
 .route-card {
   width: 100%;
-  background: #111;
-  border: 2px solid #333;
+  background: var(--card);
+  border: 2px solid var(--card-border);
   border-radius: 14px;
   padding: 16px;
-  color: #fff;
+  color: var(--fg);
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s, border 0.15s;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s;
 }
 
 .route-card:hover {
@@ -125,11 +138,10 @@
 
 /* Route themes */
 .route-card.thika {
-  border-color: #00ffcc;
+  border-color: var(--accent-teal);
 }
-
 .route-card.jogoo {
-  border-color: #ff6b00;
+  border-color: var(--accent-orange);
 }
 
 /* ================= CONTENT ================= */
@@ -142,17 +154,18 @@
 
 .route-info h3 {
   font-size: 15px;
-  margin-bottom: 4px;
+  margin: 0 0 4px;
 }
 
 .route-info p {
   font-size: 12px;
   opacity: 0.8;
+  margin: 0;
 }
 
 .arrow {
   font-size: 22px;
-  color: #fff;
+  color: var(--fg);
   opacity: 0.7;
 }
 
