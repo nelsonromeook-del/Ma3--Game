@@ -1,0 +1,129 @@
+/* GameScreen.css - add / update these */
+
+.game-screen {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #0a0a15;
+  overflow: hidden;
+  position: relative;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 8px;
+  background: rgba(0,0,0,0.6);
+  font-weight: bold;
+  z-index: 10;
+}
+
+.stat {
+  background: #1e1e2e;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid #444;
+}
+
+.road-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.road {
+  height: 300%; /* enough for scrolling */
+  width: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #1a1a2e 0,
+    #1a1a2e 60px,
+    #25253a 60px,
+    #25253a 120px
+  );
+  background-size: 100% 120px;
+  transition: transform 0.05s linear;
+  position: relative;
+}
+
+.matatu {
+  position: absolute;
+  bottom: 60px;
+  font-size: 80px;
+  transition: left 0.18s ease-out;
+  z-index: 5;
+}
+
+.entity {
+  position: absolute;
+  font-size: 60px;
+  text-align: center;
+  transition: top 0.05s linear;
+}
+
+.entity.passenger { animation: bob 1.2s infinite alternate; }
+.entity.obstacle  { font-size: 50px; }
+
+.name {
+  font-size: 14px;
+  background: rgba(0,180,0,0.8);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+@keyframes bob {
+  from { transform: translateY(-4px); }
+  to   { transform: translateY(4px); }
+}
+
+.message {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.8rem;
+  font-weight: bold;
+  padding: 16px 32px;
+  border-radius: 16px;
+  z-index: 20;
+  animation: popup 1.2s forwards;
+}
+
+.message.success {
+  color: #00ff88;
+  background: rgba(0,0,0,0.6);
+  text-shadow: 0 0 20px #00ff88;
+}
+
+@keyframes popup {
+  0%   { opacity: 0; transform: translate(-50%, -70%); }
+  20%  { opacity: 1; transform: translate(-50%, -50%); }
+  80%  { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -30%); }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding: 16px;
+  background: rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+.controls button {
+  width: 80px;
+  height: 80px;
+  font-size: 40px;
+  border-radius: 50%;
+  background: #ffcc00;
+  color: black;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+}

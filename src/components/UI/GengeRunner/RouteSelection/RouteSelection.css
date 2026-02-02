@@ -1,0 +1,76 @@
+.screen-container {
+  min-height: 100dvh;                /* full height on mobile */
+  width: 100%;
+  max-width: 100vw;                  /* prevent overflow */
+  padding: 16px;                     /* safe padding on small screens */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #0a0a15;
+  color: white;
+  overflow-y: auto;                  /* allow scroll if content too tall */
+}
+
+.header {
+  width: 100%;
+  max-width: 480px;                  /* cap width on large screens */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: clamp(2rem, 8vw, 3.2rem);   /* responsive font */
+  /* ... your existing styles ... */
+}
+
+.subtitle {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  margin-bottom: 24px;
+}
+
+.matatu-icon {
+  margin: 32px 0;
+  transform: scale(clamp(1, 4vw, 1.5));   /* smaller on mobile */
+}
+
+.select-title {
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  margin: 24px 0 32px;
+}
+
+.routes-container {
+  width: 100%;
+  max-width: 480px;                  /* center & cap width */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.route-card {
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  padding: 16px;
+  border-radius: 16px;
+  /* your gradient + hover styles */
+}
+
+.route-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text {
+  margin-top: auto;                  /* push to bottom if space allows */
+  padding: 24px 0 16px;
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
+  text-align: center;
+  color: #888;
+}
