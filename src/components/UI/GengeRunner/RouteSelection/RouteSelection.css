@@ -1,16 +1,18 @@
+/* Layout and global styles */
 .route-selection-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 20px;
   background: linear-gradient(to bottom, #222, #111);
   color: #fff;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
-  padding: 20px;
 }
 
+/* Heading styling */
 .route-selection-container h2 {
   font-size: 2.5rem;
   margin-bottom: 40px;
@@ -18,6 +20,7 @@
   text-shadow: 2px 2px 5px black;
 }
 
+/* Primary button styling */
 .route-selection-container button {
   width: 250px;
   padding: 15px 20px;
@@ -29,9 +32,10 @@
   color: #000;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
+/* Hover state */
 .route-selection-container button:hover {
   background-color: #ffaa00;
   transform: scale(1.05);
