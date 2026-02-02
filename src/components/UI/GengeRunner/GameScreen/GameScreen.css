@@ -1,62 +1,101 @@
 .game-screen {
+  width: 100%;
   height: 100vh;
-  background: #111;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  overflow: hidden;
-}
-
-.hud {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background: #000;
-  font-weight: bold;
-}
-
-.road-view {
-  flex: 1;
+  background: linear-gradient(to top, #87ceeb 0%, #ffffff 100%);
   position: relative;
-  background: #555;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+}
+
+/* HUD */
+.hud {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: absolute;
+  top: 60px;
+  left: 10%;
+  width: 80%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 100;
+}
+.progress-fill {
+  height: 100%;
+  background: #4caf50;
+  transition: width 0.06s linear;
+}
+
+/* Road */
+.road-view {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #444 0%, #666 100%);
   overflow: hidden;
 }
 
 /* Player */
 .matatu {
   position: absolute;
-  bottom: 12%;
-  font-size: 48px;
-  transform: translateX(-50%);
-  z-index: 5;
-}
-
-.subway-move {
-  transition: left 0.13s cubic-bezier(0.3, 1, 0.4, 1);
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  transition: left 0.1s ease;
 }
 
 /* Obstacles */
 .obstacle {
   position: absolute;
-  font-size: 36px;
+  width: 50px;
+  height: 50px;
+  font-size: 35px;
+  top: -50px;
+  transition: top 0.06s linear;
 }
 
 /* Passengers */
 .passenger {
   position: absolute;
-  font-size: 34px;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  top: -50px;
+  transition: top 0.06s linear;
 }
 
-/* Controls */
-.controls {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px;
-  background: #000;
+/* Lane lines */
+.road-view::before,
+.road-view::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: #fff;
+  opacity: 0.3;
 }
-
-.controls button {
-  width: 80px;
-  height: 50px;
-  font-size: 22px;
+.road-view::before {
+  left: 33.33%;
+}
+.road-view::after {
+  left: 66.66%;
 }

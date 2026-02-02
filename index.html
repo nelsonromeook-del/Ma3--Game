@@ -1,56 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Over</title>
-    <link rel="stylesheet" href="GameOver.css">
-    <style>
-        /* Ensure no body margins */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-        }
-    </style>
-</head>
-<body>
-    <div class="game-over-container">
-        <div class="game-over-panel">
-            <div class="game-over-title">AJALI!</div>
-            <div class="game-over-subtitle">NGORI BUDA HATUFIKI TAO</div>
-            
-            <div class="revenue-container">
-                <div class="revenue-label">REVENUE LOST</div>
-                <div class="revenue-value">Ksh 80</div>
-            </div>
-            
-            <div class="stats-row">
-                <div class="stat-item">
-                    <div class="stat-label">Fare</div>
-                    <div class="stat-value">Ksh 0</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Level</div>
-                    <div class="stat-value">1</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Squad</div>
-                    <div class="stat-value">4</div>
-                </div>
-            </div>
-            
-            <button class="betty-button">BETTY MENU</button>
-        </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matatu Runner</title>
 
-    <script>
-        document.querySelector('.betty-button').addEventListener('click', function() {
-            alert('BETTY MENU button clicked!');
-            // Add your menu navigation logic here
-        });
-    </script>
-</body>
+    <!-- Optional: Font for game UI -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        overflow: hidden;
+        font-family: "Orbitron", system-ui, sans-serif;
+      }
+
+      #root {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- React mounts here -->
+    <div id="root"></div>
+
+    <!-- Vite entry point -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
