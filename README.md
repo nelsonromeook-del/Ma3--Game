@@ -1,16 +1,56 @@
-# React + Vite
+# 🚌 Matatu Pickup & Drop Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple 2D web-based game inspired by Nairobi’s matatu transport system.  
+Players pick up passengers at designated stops and drop them off at their destinations while avoiding obstacles and managing routes.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 Game Overview
 
-## React Compiler
+Matatus are the backbone of public transport in Nairobi. This game simulates the everyday matatu experience through a fun and interactive browser game.  
+The player controls a matatu, navigates routes, picks up passengers, and earns points by completing trips successfully.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🎯 Route selection system
+- 🧍 Passenger pickup and drop-off mechanics
+- 🚧 Obstacles and traffic challenges
+- 📊 Heads-Up Display (HUD) for score, passengers, and progress
+- 🎨 Retro-style game design
+- ⏱ Real-time gameplay logic
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React (Vite)
+- **Styling:** CSS
+- **Routing:** React Router DOM
+- **State Management:** React Hooks
+- **Version Control:** Git & GitHub
+
+---
+#git clone https://github.com/your-username/matatu-game.git
+cd matatu-game
+npm install
+npm run dev.
+
+
+## 📂 Project Structure
+
+```bash
+src/
+├── components/
+│   ├── GameScreen.jsx
+│   ├── HUD.jsx
+│   ├── RouteSelection.jsx
+│   └── GameContent.jsx
+├── assets/
+│   └── images, sounds
+├── App.jsx
+├── main.jsx
+└── index.css
+
+
