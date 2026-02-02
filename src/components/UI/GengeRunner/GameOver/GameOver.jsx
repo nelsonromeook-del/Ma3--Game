@@ -1,28 +1,11 @@
-export default function GameOver({ stats, onRetry }) {
-  const isAjali = stats.revenueLost > 0;
+import './GameOver.css';
 
+export default function GameOver() {
   return (
-    <div className="game-over-screen">
-      <div className="panel">
-        <h1 className="ajali">AJALI!</h1>
-        
-        <p className="subtitle">NGORI BUDA HATUFIKI TAO</p>
-
-        <div className="revenue-section">
-          <div className="revenue-title">REVENUE LOST</div>
-          <div className="revenue-amount">Ksh {stats.revenueLost}</div>
-        </div>
-
-        <div className="stats">
-          <div>Fare: Ksh {stats.fare}</div>
-          <div>Level: {stats.level}</div>
-          <div>Squad: {stats.squad}</div>
-        </div>
-
-        <button className="retry-btn" onClick={onRetry}>
-          RETRY MENU
-        </button>
-      </div>
+    <div className="game-over-container">
+      <h1>AJALI!</h1>
+      <p>NGORI BUDA HATUFIKI TAO</p>
+      <button onClick={() => window.location.href = "/"}>BACK TO MENU</button>
     </div>
   );
 }

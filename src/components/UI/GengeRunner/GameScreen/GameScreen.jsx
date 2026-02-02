@@ -2,28 +2,27 @@ import { useState, useEffect, useRef } from "react";
 import "./GameScreen.css";
 
 const LANES = [0, 1, 2];
+const TOTAL_DISTANCE = 1000; // total game "distance" to CBD
 
 export default function GameScreen({ onGameOver }) {
   const [lane, setLane] = useState(1);
   const [fare, setFare] = useState(0);
   const [squad, setSquad] = useState(0);
   const [level, setLevel] = useState(1);
-
+  const [progress, setProgress] = useState(0); // distance progress %
   const [obstacles, setObstacles] = useState([]);
   const [passengers, setPassengers] = useState([]);
 
   const speedRef = useRef(5);
   const laneLock = useRef(false);
   const gameOverRef = useRef(false);
-  const missedPassengers = useRef(0);
 
   /* ================= GAME LOOP ================= */
   useEffect(() => {
     const loop = setInterval(() => {
       if (gameOverRef.current) return;
 
-      // Increase difficulty
-      speedRef.current = 5 + level * 0.8;
+      speedRef.current = 5 + level * 0.5;
 
       // Move obstacles
       setObstacles((prev) =>
@@ -37,38 +36,29 @@ export default function GameScreen({ onGameOver }) {
         prev
           .map((p) => ({ ...p, y: p.y + speedRef.current }))
           .filter((p) => {
-            if (p.y > 100) {
-              missedPassengers.current += 1;
-              return false;
-            }
+            if (p.y > 100) return false; // missed passenger
             return true;
           })
       );
 
       // Spawn obstacle
-      if (Math.random() < 0.025) {
-        setObstacles((prev) => [
-          ...prev,
-          { id: Date.now(), lane: randLane(), y: -10 },
-        ]);
+      if (Math.random() < 0.03) {
+        setObstacles((prev) => [...prev, { id: Date.now(), lane: randLane(), y: -10 }]);
       }
 
       // Spawn passenger
-      if (Math.random() < 0.035) {
-        setPassengers((prev) => [
-          ...prev,
-          { id: Date.now() + 1, lane: randLane(), y: -10 },
-        ]);
+      if (Math.random() < 0.04) {
+        setPassengers((prev) => [...prev, { id: Date.now() + 1, lane: randLane(), y: -10 }]);
       }
 
-      // Collision — obstacles
+      // Collision detection with obstacles
       obstacles.forEach((o) => {
         if (o.lane === lane && o.y > 70 && o.y < 85) {
-          endGame(true);
+          endGame(false); // player crashed
         }
       });
 
-      // Collision — passengers
+      // Collision detection with passengers
       setPassengers((prev) =>
         prev.filter((p) => {
           if (p.lane === lane && p.y > 70 && p.y < 85) {
@@ -81,14 +71,17 @@ export default function GameScreen({ onGameOver }) {
       );
 
       // Level up
-      if (fare > level * 200) {
-        setLevel((l) => l + 1);
-      }
+      if (fare > level * 200) setLevel((l) => l + 1);
 
-      // Police trigger if too many missed
-      if (missedPassengers.current >= 5) {
-        endGame(true);
-      }
+      // Increase progress
+      setProgress((p) => {
+        const next = p + 0.6;
+        if (next >= TOTAL_DISTANCE) {
+          endGame(true); // player successfully reached CBD
+          return TOTAL_DISTANCE;
+        }
+        return next;
+      });
     }, 60);
 
     return () => clearInterval(loop);
@@ -97,50 +90,29 @@ export default function GameScreen({ onGameOver }) {
   /* ================= HELPERS ================= */
   const randLane = () => LANES[Math.floor(Math.random() * 3)];
 
-  const endGame = (crash) => {
+  const endGame = (success) => {
     if (gameOverRef.current) return;
     gameOverRef.current = true;
 
-    onGameOver({
-      fare: crash ? 0 : fare,
+    onGameOver?.({
+      fare,
       squad,
       level,
-      revenueLost: crash ? fare : 0,
+      success,
     });
   };
 
   /* ================= LANE SWITCH ================= */
   const switchLane = (dir) => {
     if (laneLock.current) return;
-
     setLane((prev) => {
       const next = prev + dir;
       if (next < 0 || next > 2) return prev;
-
       laneLock.current = true;
       setTimeout(() => (laneLock.current = false), 130);
       return next;
     });
   };
-
-  /* ================= SWIPE CONTROLS ================= */
-  useEffect(() => {
-    let startX = null;
-    const onTouchStart = (e) => (startX = e.touches[0].clientX);
-    const onTouchEnd = (e) => {
-      if (startX === null) return;
-      const diff = e.changedTouches[0].clientX - startX;
-      if (diff > 50) switchLane(1);
-      if (diff < -50) switchLane(-1);
-      startX = null;
-    };
-    window.addEventListener("touchstart", onTouchStart);
-    window.addEventListener("touchend", onTouchEnd);
-    return () => {
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchend", onTouchEnd);
-    };
-  }, []);
 
   /* ================= KEYBOARD CONTROLS ================= */
   useEffect(() => {
@@ -161,49 +133,37 @@ export default function GameScreen({ onGameOver }) {
         <div>SQUAD {squad}</div>
       </div>
 
-      {/* ROAD */}
-      <div className="road-view">
-        {/* Player */}
+      {/* Progress Bar */}
+      <div className="progress-bar">
         <div
-          className="matatu subway-move"
-          style={{ left: `${lane * 33.33 + 16.5}%` }}
-        >
+          className="progress-fill"
+          style={{ width: `${(progress / TOTAL_DISTANCE) * 100}%` }}
+        ></div>
+      </div>
+
+      {/* Road */}
+      <div className="road-view">
+        <div className="matatu" style={{ left: `${lane * 33.33 + 16.5}%` }}>
           🚌
         </div>
-
-        {/* Obstacles */}
         {obstacles.map((o) => (
           <div
             key={o.id}
             className="obstacle"
-            style={{
-              left: `${o.lane * 33.33 + 20}%`,
-              top: `${o.y}%`,
-            }}
+            style={{ left: `${o.lane * 33.33 + 20}%`, top: `${o.y}%` }}
           >
             🚧
           </div>
         ))}
-
-        {/* Passengers */}
         {passengers.map((p) => (
           <div
             key={p.id}
             className="passenger"
-            style={{
-              left: `${p.lane * 33.33 + 20}%`,
-              top: `${p.y}%`,
-            }}
+            style={{ left: `${p.lane * 33.33 + 20}%`, top: `${p.y}%` }}
           >
             🧍
           </div>
         ))}
-      </div>
-
-      {/* CONTROLS */}
-      <div className="controls">
-        <button onClick={() => switchLane(-1)}>←</button>
-        <button onClick={() => switchLane(1)}>→</button>
       </div>
     </div>
   );

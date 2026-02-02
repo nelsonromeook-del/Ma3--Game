@@ -1,184 +1,38 @@
-/* RouteSelection.css */
-
-:root {
-  --bg: #0a0a0a;
-  --bg-deep: #000;
-  --fg: #fff;
-  --accent-teal: #00ffcc;
-  --accent-cyan: #00ffcc;
-  --accent-orange: #ff6b00;
-  --card: #111;
-  --card-border: #333;
-}
-
-.screen-container {
-  width: 100%;
+.route-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
-  background: radial-gradient(circle at top, var(--bg), var(--bg-deep));
-  color: var(--fg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 18px;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-}
-
-/* ================= HEADER ================= */
-
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: var(--accent-teal);
-  text-shadow: 0 0 12px rgba(0, 255, 204, 0.8);
-}
-
-.sound-btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  color: var(--fg);
-  cursor: pointer;
-}
-
-/* ================= SUBTITLE ================= */
-
-.subtitle {
-  margin-top: 6px;
-  font-size: 13px;
-  letter-spacing: 2px;
-  opacity: 0.8;
-}
-
-/* ================= MATATU ICON ================= */
-
-.matatu-icon {
-  margin: 26px 0 18px;
-}
-
-.matatu-body {
-  width: 120px;
-  height: 50px;
-  background: linear-gradient(135deg, var(--accent-teal), #008f77);
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0 6px 16px rgba(0, 255, 204, 0.4);
-}
-
-.window-strip {
-  position: absolute;
-  top: 10px;
-  left: 8px;
-  right: 8px;
-  height: 14px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-}
-
-.wheel {
-  width: 18px;
-  height: 18px;
-  background: #111;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -8px;
-}
-
-.wheel-left {
-  left: 14px;
-}
-.wheel-right {
-  right: 14px;
-}
-
-/* ================= SELECT TITLE ================= */
-
-.select-title {
-  margin: 18px 0 12px;
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: #ffcc00;
-}
-
-/* ================= ROUTES ================= */
-
-.routes-container {
-  width: 100%;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.route-card {
-  width: 100%;
-  background: var(--card);
-  border: 2px solid var(--card-border);
-  border-radius: 14px;
-  padding: 16px;
-  color: var(--fg);
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s;
-}
-
-.route-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-}
-
-/* Route themes */
-.route-card.thika {
-  border-color: var(--accent-teal);
-}
-.route-card.jogoo {
-  border-color: var(--accent-orange);
-}
-
-/* ================= CONTENT ================= */
-
-.route-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.route-info h3 {
-  font-size: 15px;
-  margin: 0 0 4px;
-}
-
-.route-info p {
-  font-size: 12px;
-  opacity: 0.8;
-  margin: 0;
-}
-
-.arrow {
-  font-size: 22px;
-  color: var(--fg);
-  opacity: 0.7;
-}
-
-/* ================= FOOTER ================= */
-
-.footer-text {
-  margin-top: auto;
+  background: linear-gradient(to bottom, #222, #111);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
   text-align: center;
-  font-size: 11px;
-  opacity: 0.6;
-  letter-spacing: 1px;
+  padding: 20px;
 }
 
-.footer-text p {
-  margin: 4px 0;
+.route-selection-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #ffcc00;
+  text-shadow: 2px 2px 5px black;
+}
+
+.route-selection-container button {
+  width: 250px;
+  padding: 15px 20px;
+  margin: 15px 0;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.route-selection-container button:hover {
+  background-color: #ffaa00;
+  transform: scale(1.05);
 }
